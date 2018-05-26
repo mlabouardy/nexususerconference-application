@@ -1,4 +1,5 @@
-imageName = "nexususerconference-application"
+imageName = 'nexususerconference-application'
+registry = 'https://registry.slowcoder.com'
 
 node('slaves'){
     stage('Checkout'){
@@ -6,7 +7,7 @@ node('slaves'){
     }
 
     stage('Test'){
-        docker.build("${imageName}:${env.BUILD_ID}", "-f Dockerfile.test .")
+        docker.build("${imageName}:${env.BUILD_ID}", '-f Dockerfile.test .')
         sh "docker run --rm ${imageName}:${env.BUILD_ID}"
     }
 
@@ -15,10 +16,23 @@ node('slaves'){
     }
 
     stage('Push'){
+        docker.withRegistry(registry, 'registry') {
+            docker.image(imageName).push("${commitID()}")
 
+            if (env.BRANCH_NAME == 'master') {
+              docker.image(imageName).push('latest')
+            }
+        }
     }
 
     stage('Deploy'){
 
     }
+}
+
+def commitID() {
+    sh 'git rev-parse HEAD > .git/commitID'
+    def commitID = readFile('.git/commitID').trim()
+    sh 'rm .git/commitID'
+    commitID
 }
