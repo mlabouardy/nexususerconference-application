@@ -11,7 +11,7 @@ node('slaves'){
     }
 
     stage('Build'){
-
+        docker.build("${imageName}")
     }
 
     stage('Push'){
