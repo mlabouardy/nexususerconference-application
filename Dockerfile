@@ -9,5 +9,5 @@ LABEL Environment production
 RUN apk --no-cache add ca-certificates
 WORKDIR /root/
 COPY --from=0 /go/src/github.com/mlabouardy/nexususerconference-application/app .
-COPY static .
+COPY static static
 CMD ["./app"] 
