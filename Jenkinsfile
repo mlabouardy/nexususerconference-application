@@ -1,4 +1,4 @@
-imageName = 'nexususerconference-application'
+imageName = 'application'
 registry = 'https://registry.slowcoder.com'
 
 node('slaves'){
@@ -26,7 +26,7 @@ node('slaves'){
     }
 
     stage('Deploy'){
-
+        
     }
 }
 
