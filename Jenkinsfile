@@ -27,7 +27,7 @@ node('slaves'){
 
     /*
     stage('Deploy'){
-        build job: "nexususerconference-deployment/${env.BRANCH_NAME}"
+        build job: "nexususerconference-deployment/master"
     }*/
 }
 
