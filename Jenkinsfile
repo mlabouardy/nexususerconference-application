@@ -25,9 +25,10 @@ node('slaves'){
         }
     }
 
+    /*
     stage('Deploy'){
-        
-    }
+        build job: "nexususerconference-deployment/${env.BRANCH_NAME}"
+    }*/
 }
 
 def commitID() {
