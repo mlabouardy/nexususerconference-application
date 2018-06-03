@@ -25,10 +25,9 @@ node('slaves'){
         }
     }
 
-    /*
     stage('Deploy'){
         build job: "nexususerconference-deployment/master"
-    }*/
+    }
 }
 
 def commitID() {
